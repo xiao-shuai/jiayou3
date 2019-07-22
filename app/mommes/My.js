@@ -25,15 +25,15 @@ class My extends Component{
    render(){
        const tttbb=[
            {
-               n:'My Order',
+               n:'我的预约',
                go:'Dingdan'
            },
            {
-            n:'Feedback',
+            n:'意见反馈',
             go:'Faak'
         },
          {
-            n:'About',
+            n:'关于我们',
             go:'ABGuanyuwm'
          },
         
@@ -55,8 +55,8 @@ class My extends Component{
                   {/* <Top title='Personal center'/> */}
                   {/* <Top title='Personal center'/> */}
                   {/* <Top title='Personal center'/> */}
-              <Text style={styles.text}>Personal information</Text>   
-               <Text style={[styles.text,{marginTop:5}]}>name : Tina</Text> 
+              <Text style={styles.text}>个人信息</Text>   
+               <Text style={[styles.text,{marginTop:5}]}>姓名 : 张三</Text> 
               </View>
                  </View>
                  {/*  */}
@@ -78,7 +78,7 @@ class My extends Component{
                      })
                  }
               
-              <Button  title='exit' buttonStyle={{marginTop:15,backgroundColor:zthui2.zhutisee}}
+              <Button  title='退出' buttonStyle={{marginTop:15,backgroundColor:zthui2.zhutisee}}
                 onPress={()=>{
                     AsyncStorage.removeItem('ss')
                     this.props.navigation.reset([NavigationActions.navigate({ routeName: 'Logg' })], 0)

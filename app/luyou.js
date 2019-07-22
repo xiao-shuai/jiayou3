@@ -72,6 +72,13 @@ let whereIsMyMind = [
             headerBackTitle:null,
         })
       },
+      MonHome:{
+        screen:MonHome,
+        navigationOptions:()=>({
+            header:null,
+            headerBackTitle:null,
+        })
+      },
       
       Logg:{
         screen:Logg,
@@ -83,7 +90,7 @@ let whereIsMyMind = [
       Dingdan:{
         screen:OrderDingdan,
         navigationOptions:()=>({
-            title:'The order details',
+            title:'预约详情',
             headerTintColor:zthui2.zhutisee
           
         })
@@ -91,7 +98,7 @@ let whereIsMyMind = [
       ABGuanyuwm:{
         screen:ABGuanyuwm,
         navigationOptions:()=>({
-            title:'About us',
+            title:'关于我们',
             headerTintColor:zthui2.zhutisee
             // header:null
         })
@@ -99,7 +106,7 @@ let whereIsMyMind = [
       Faak:{
         screen:Faak,
         navigationOptions:()=>({
-            title:'Feedback',
+            title:'反馈',
             headerTintColor:zthui2.zhutisee
             // header:null
         })

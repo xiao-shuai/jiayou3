@@ -120,30 +120,7 @@ class MonHome extends Component{
   }
 
   render(){
-    const appConfig = {
-      // 用户的appkey
-      // 用于在web demo中注册账号异步请求demo 服务器中使用
-      test: {
-        appkey: 'fe416640c8e8a72734219e1847ad2547',
-        postUrl: 'https://apptest.netease.im',
-      },
-      online: {
-        appkey: '45c6af3c98409b18a84451215d0bdd6e',
-        postUrl: 'https://app.netease.im',
-      },
-    };
-    const appConfig2 = {
-      // 用户的appkey
-      // 用于在web demo中注册账号异步请求demo 服务器中使用
-      test: {
-        appkey: 'fe416640c8e8a72734219e1847ad2547',
-        postUrl: 'https://apptest.netease.im',
-      },
-      online: {
-        appkey: '45c6af3c98409b18a84451215d0bdd6e',
-        postUrl: 'https://app.netease.im',
-      },
-    };
+    
        return(
         <SafeAreaView style={{flex:1,alignItems:'center'}}>
         <View style={{flex:1,width:'100%',alignItems:'center',backgroundColor:zthui2.beijinsse}}>
@@ -158,7 +135,7 @@ class MonHome extends Component{
       }
       this.props.kdata.bbcc(ssd)
       this.props.navigation.navigate('Dingdan') */}
-          <Button title='reservation' type='clear' titleStyle={styles.top_tt}/> 
+          <Button title='预约中心' type='clear' titleStyle={styles.top_tt}/> 
          
          </View>
          <KeyboardAwareScrollView contentContainerStyle={{alignItems:'center'}}>
@@ -174,7 +151,7 @@ class MonHome extends Component{
       this.props.navigation.navigate('Dingdan') */}
           
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>name</Text>
+             <Text style={styles.text_left}>姓名</Text>
              <Input  
              onChangeText={(xxxmm)=>{
               this.setState({xxxmm})
@@ -197,7 +174,7 @@ class MonHome extends Component{
       this.props.kdata.bbcc(ssd)
       this.props.navigation.navigate('Dingdan') */}
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>phone</Text>
+             <Text style={styles.text_left}>电话</Text>
              <Input  
              onChangeText={(pph)=>{
               this.setState({pph})
@@ -211,7 +188,7 @@ class MonHome extends Component{
            </View>
 
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>company</Text>
+             <Text style={styles.text_left}>公司</Text>
              <Input  
              onChangeText={(cpp)=>{
               this.setState({cpp})
@@ -225,7 +202,7 @@ class MonHome extends Component{
            </View>
 
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>address</Text>
+             <Text style={styles.text_left}>地址</Text>
              <Input  
              onChangeText={(addrrss)=>{
               this.setState({addrrss})
@@ -241,7 +218,7 @@ class MonHome extends Component{
 
 
           <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>start</Text>
+             <Text style={styles.text_left}>开始时间</Text>
           
          <DatePicker
         style={[styles.connnn,{borderWidth:0}]}
@@ -274,7 +251,7 @@ class MonHome extends Component{
            </View>
 
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>end</Text>
+             <Text style={styles.text_left}>结束时间</Text>
           
          <DatePicker
         style={[styles.connnn,{borderWidth:0}]}
@@ -307,9 +284,9 @@ class MonHome extends Component{
            </View>
     
            <View style={styles.vvvtext}>
-             <Text style={styles.text_left}>reason</Text>
+             <Text style={styles.text_left}>备注</Text>
              <Input  
-             placeholder='optional'
+            //  placeholder='可选'
              containerStyle={styles.connnn}
              multiline={true}
              inputContainerStyle={styles.conttex}
@@ -318,7 +295,7 @@ class MonHome extends Component{
                }}/>
            </View>
 
-           <Button    buttonStyle={styles.bbtt} title={'submit'} 
+           <Button    buttonStyle={styles.bbtt} title={'提交'} 
                onPress={()=>{
                  this.sbsbsb()
                }}

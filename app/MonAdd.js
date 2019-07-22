@@ -33,21 +33,21 @@ componentDidMount(){
     render(){
         let tytt=[
             {
-                tit:'Here,',
-                con:'33 laifu road, jaingxia district, wuhan city, hubei province, China'
+                tit:'地理详情',
+                con:'北京市海淀区知春路78号'
                },
             {
-            tit:'Working time',
-            con:'Monday through Friday,09:00-06:00'
+            tit:'工作时间',
+            con:'周一至周五,09:00-06:00'
             },
             {
-            tit:'Contact phone number',
+            tit:'联系电话',
             con:'+861873567894',
             },
             
             {
-              tit:'Email',
-              tit:'Werfhy9@gmail.com'  
+              tit:'邮件',
+              tit:'huizhong9@163.com'  
             }
 
 
@@ -58,7 +58,7 @@ componentDidMount(){
              {/* <Top title='Here we are'/> */}
              <View style={styles.topbig}>
 
-          <Button title='The map' type='clear' titleStyle={{
+          <Button title='地理位置' type='clear' titleStyle={{
             color:'white',fontSize:zthui2.big_width*.06,fontWeight:'500'
           }}/> 
          

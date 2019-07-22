@@ -16,65 +16,16 @@ import {ButtonGroup,Input,Button} from 'react-native-elements'
 import Toast from 'react-native-easy-toast'
 import {NavigationActions} from 'react-navigation'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-let whereIsMyMind = [
-    "Ooooooh - stop",
-    "With your feet in the air and your head on the ground",
-    "Try this trick and spin it, yeah",
-    "Your head will collapse",
-    "But there's nothing in it",
-    "And you'll ask yourself",
-    "Where is my mind [3x]",
-    "Ooooh",
-    "With your feet in the air and your head on the ground",
-    "Ooooh",
-    "Try this trick and spin it, yeah",
-    "Ooooh",
-    "Ooooh"
-  ];
-  let tnt = [
-    "See me ride out of the sunset",
-    "On your color TV screen",
-    "Out for all that I can get",
-    "If you know what I mean",
-    "Women to the left of me",
-    "And women to the right",
-    "Ain't got no gun",
-    "Ain't got no knife",
-    "Don't you start no fight",
-    "'Cause I'm T.N.T. I'm dynamite",
-    "T.N.T. and I'll win the fight",
-    "T.N.T. I'm a power load",
-    "T.N.T. watch me explode"
-  ];  
-  const appConfig = {
-    // 用户的appkey
-    // 用于在web demo中注册账号异步请求demo 服务器中使用
-    test: {
-      appkey: 'fe416640c8e8a72734219e1847ad2547',
-      postUrl: 'https://apptest.netease.im',
-    },
-    online: {
-      appkey: '45c6af3c98409b18a84451215d0bdd6e',
-      postUrl: 'https://app.netease.im',
-    },
-  };
-  const appConfig2 = {
-    // 用户的appkey
-    // 用于在web demo中注册账号异步请求demo 服务器中使用
-    test: {
-      appkey: 'fe416640c8e8a72734219e1847ad2547',
-      postUrl: 'https://apptest.netease.im',
-    },
-    online: {
-      appkey: '45c6af3c98409b18a84451215d0bdd6e',
-      postUrl: 'https://app.netease.im',
-    },
-  };
+import AV from 'leancloud-storage'
+
+  
 class Logg extends Component{
     constructor(props){
         super(props)
         this.state={
-            selectedIndex: 0
+            selectedIndex: 0,
+            time:'获取验证码',
+            log_yzm_btn:false
         }
         this.updateIndex = this.updateIndex.bind(this)
     }
@@ -83,20 +34,32 @@ class Logg extends Component{
         this.setState({selectedIndex})
       }
       yyylkj=()=>{
+        console.log('denle:',this.state.monlogzh)
+        // AsyncStorage.setItem('ss','11')
+        //     this.props.navigation.reset([NavigationActions.navigate({ routeName: 'rroott' })], 0)
           if(this.state.monlogzh==undefined){
-              return this.refs.toast.show('Please enter the account number',1000)
+               this.refs.toast.show('请输入账号',1000)
   
           } else if(this.state.monlogmm==undefined){
-             return  this.refs.toast.show('Please enter password',1000)
+               this.refs.toast.show('请输入验证码',1000)
   
+          } else{
+            AV.Cloud.verifySmsCode(this.state.monlogmm, this.state.monlogzh)
+            .then( ()=>{
+              console.log('yanzok')
+              AsyncStorage.setItem('ss','11')
+              // this.props.navigation.navigate('rroott')
+              this.props.navigation.reset([NavigationActions.navigate({ routeName: 'rroott' })], 0)
+               
+            } , function(err){
+              //验证失败
+              console.log('err',err)
+              this.refs.toast.show('信息错误，请稍后重试',1000)
+          });
           }
-          fetch('https://easy-mock.com/mock/5d27013085f8e619f910e282/jiayoumom/logggin',
-    {method:'POST'})
-    .then(res=>res.json())
-    .then(res=>{})
-    .catch(eree=>{})
-          AsyncStorage.setItem('ss','11')
-          this.props.navigation.reset([NavigationActions.navigate({ routeName: 'rroott' })], 0)
+         
+         
+          
           
       }
       reggg=()=>{
@@ -117,10 +80,48 @@ class Logg extends Component{
       }
       
       ffforgit=()=>{
-      Alert.alert('Warm prompt','If you forget your password, please contact us at 021-32349874',[{'text':'ok',onPress:()=>{}}])
+      Alert.alert('提示','请发送CZMM到106913546789734进行修改密码',[{'text':'ok',onPress:()=>{}}])
       }
+
+  
+  dao=()=>{
+    console.log('zh:',this.state.monlogzh)
+    let a=60
+    if(this.state.monlogzh==undefined){
+       return this.refs.toast.show('请输入账号',1000)
+    }else if(this.state.monlogmm==undefined){
+      // return  this.refs.toast.show('请输入验证码',1000)
+    }
+    this.timer= setInterval(() => {
+       let b = a--
+      if(b===0){
+        this.setState({time:'重新获取',log_yzm_btn:false})
+        this.timer&&clearInterval(this.timer)
+      }else{       
+        this.setState({time:b+'s',log_yzm_btn:true})
+      }
+
+    }, 1000);
+
+    AV.Cloud.requestSmsCode({
+      mobilePhoneNumber:this.state.monlogzh,
+      name: '牛牛预约',
+      op: '验证码登录',
+      ttl: 10                    // 验证码有效时间为 10 分钟
+  }).then(function(e){
+      //调用成功
+       console.log('yzm ok:',e)
+
+   
+  }, function(err){
+      //调用失败
+      console.log('yzm err:',err)
+  });
+  
+    
+  }    
     render(){
-        const buttons = ['Login', 'Registered']
+        const buttons = ['登录', '注册']
        const { selectedIndex } = this.state
         return(
             <SafeAreaView style={{flex:1,alignItems:'center'}}>
@@ -152,43 +153,104 @@ class Logg extends Component{
      
      containerStyle={styles.iiii_ccc} 
      inputContainerStyle={{borderBottomWidth:0}}
-     placeholder='Please enter your account number'
+     placeholder='请输入手机号码'
      onChangeText={(monlogzh)=>{
+       console.log('111:',monlogzh)
      this.setState({monlogzh})
      }}
 
      />
+     <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+
      <Input inputStyle={{}}
      secureTextEntry={true}
      onChangeText={(monlogmm)=>{
      this.setState({monlogmm})
      }}
-     containerStyle={styles.iiii_ccc} 
+     containerStyle={[styles.iiii_ccc,{width:zthui2.big_width*.5}]} 
      inputContainerStyle={{borderBottomWidth:0}}
-     placeholder='Please enter password'
+     placeholder='请输入验证码'
      />
+     <Button title={this.state.time} 
+     disabled={this.state.log_yzm_btn}
+     type={'outline'}
+    //  titleStyle
+     buttonStyle={{
+       marginTop:15,width:zthui2.big_width*.3,
+       borderColor:zthui2.zthui2
+      }} 
+     onPress={()=>{
+        this.dao()
+     }} />
+     </View>
      
-     <Button title='Login' buttonStyle={[{backgroundColor:zthui2.zhutisee,marginTop:20}]}
+     <Button title='登录' buttonStyle={[{backgroundColor:zthui2.zhutisee,marginTop:20}]}
        onPress={()=>{
            this.yyylkj()
        }}
      />
      <View style={{width:zthui2.big_width*.95,flexDirection:'row',justifyContent:'space-between'}}>
      <Button title='' type='clear'/>
-     <Button title='Forgot password' type='clear' titleStyle={{color:zthui2.zthui2}} onPress={()=>{
+     <Button title='忘记密码 》》' type='clear' titleStyle={{color:zthui2.zthui2}} onPress={()=>{
          this.ffforgit()
      }}/>
      </View>
       </View>
       :
       <View>
-      <Input inputStyle={{}}
+        <Input inputStyle={{}}
+     
+     containerStyle={styles.iiii_ccc} 
+     inputContainerStyle={{borderBottomWidth:0}}
+     placeholder='请输入手机号码'
+     onChangeText={(monlogzh)=>{
+       console.log('111:',monlogzh)
+     this.setState({monlogzh})
+     }}
+
+     />
+     <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
+
+     <Input inputStyle={{}}
+     secureTextEntry={true}
+     onChangeText={(monlogmm)=>{
+     this.setState({monlogmm})
+     }}
+     containerStyle={[styles.iiii_ccc,{width:zthui2.big_width*.5}]} 
+     inputContainerStyle={{borderBottomWidth:0}}
+     placeholder='请输入验证码'
+     />
+     <Button title={this.state.time} 
+     disabled={this.state.log_yzm_btn}
+     type={'outline'}
+    //  titleStyle
+     buttonStyle={{
+       marginTop:15,width:zthui2.big_width*.3,
+       borderColor:zthui2.zthui2
+      }} 
+     onPress={()=>{
+        this.dao()
+     }} />
+     </View>
+     
+     <Button title='注册' buttonStyle={[{backgroundColor:zthui2.zhutisee,marginTop:20}]}
+       onPress={()=>{
+           this.yyylkj()
+       }}
+     />
+     <View style={{width:zthui2.big_width*.95,flexDirection:'row',justifyContent:'space-between'}}>
+     {/* <Button title='' type='clear'/> */}
+     {/* <Button title='忘记密码 》》' type='clear' titleStyle={{color:zthui2.zthui2}} onPress={()=>{
+         this.ffforgit()
+     }}/> */}
+     </View>
+      {/* <Input inputStyle={{}}
       onChangeText={(qq_zc_zh)=>{
         this.setState({qq_zc_zh})
       }}
       containerStyle={styles.iiii_ccc} 
       inputContainerStyle={{borderBottomWidth:0}}
-      placeholder='Please enter your account number'
+      placeholder='请输入账号'
       />
       <Input inputStyle={{}}
       onChangeText={(qq_ww_zcpw)=>{
@@ -197,7 +259,7 @@ class Logg extends Component{
       secureTextEntry={true}
       containerStyle={styles.iiii_ccc} 
       inputContainerStyle={{borderBottomWidth:0}}
-      placeholder='Please enter password'
+      placeholder='请输入密码'
       />
       <Input inputStyle={{}}
       onChangeText={(qq_ww_zcpw2)=>{
@@ -206,13 +268,13 @@ class Logg extends Component{
       secureTextEntry={true}
       containerStyle={styles.iiii_ccc} 
       inputContainerStyle={{borderBottomWidth:0}}
-      placeholder='Please confirm the password again'
+      placeholder='确认密码'
       />
-      <Button title='registered' buttonStyle={[{backgroundColor:zthui2.zhutisee,marginTop:20}]}
+      <Button title='注册' buttonStyle={[{backgroundColor:zthui2.zhutisee,marginTop:20}]}
        onPress={()=>{
            this.reggg()
        }}
-      />
+      /> */}
        </View>
     }
 

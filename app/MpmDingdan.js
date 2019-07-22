@@ -46,12 +46,12 @@ componentDidMount(){
                          list.map((i,k)=>{
                           return(
                             <View style={styles.wz}>
-                            <Text style={styles.wz2}>phone : {i.phph} </Text>
-                            <Text style={styles.wz2}>company : {i.hhy} </Text>
-                            <Text style={styles.wz2}>address : {i.addrrss} </Text>
-                            <Text style={styles.wz2}>name : {i.ysm} </Text>
-                            <Text style={styles.wz2}>hhys : {i.hhys} </Text>
-                            <Text style={styles.wz2}>end : {i.end} </Text>
+                            <Text style={styles.wz2}>电话 : {i.phph} </Text>
+                            <Text style={styles.wz2}>公司 : {i.hhy} </Text>
+                            <Text style={styles.wz2}>地址 : {i.addrrss} </Text>
+                            <Text style={styles.wz2}>姓名 : {i.ysm} </Text>
+                            <Text style={styles.wz2}>开始时间 : {i.hhys} </Text>
+                            <Text style={styles.wz2}>结束时间 : {i.end} </Text>
                          </View>
                           )
                          })

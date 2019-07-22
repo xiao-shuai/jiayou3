@@ -32,7 +32,7 @@ export default class Faak extends  Component{
         .then(res=>res.json())
         .then(res=>{})
         .catch(eree=>{})
-        this.refs.toast.show('Thanks for your feedback! We will fix it as soon as possible',1000)
+        this.refs.toast.show('谢谢你的反馈，我们将核实修复！',1000)
     }
     render(){
         const util = {};
@@ -63,7 +63,7 @@ export default class Faak extends  Component{
               }}
              />
                
-            <Button title='submit' buttonStyle={styles.ann}
+            <Button title='提交' buttonStyle={styles.ann}
               onPress={()=>{
                   this.gobacc()
               }}

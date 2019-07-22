@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import Tymonlvy from './app/luyou'
 import {Provider} from 'mobx-react';
 import aac from './app/mommbx/mbindex'
+import AV from 'leancloud-storage'; 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -22,6 +23,7 @@ type Props = {};
 console.disableYellowBox=true
 export default class App extends Component<Props> {
   render() {
+    AV.initialize('dIDy2CSBTHs0y0kfFcHARX3D-gzGzoHsz', 'XiMKvUMP4c2XBsck38S9DIxt');
     return (
       <Provider {...aac}>
          <Tymonlvy />

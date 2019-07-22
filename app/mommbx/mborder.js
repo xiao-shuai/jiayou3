@@ -6,10 +6,10 @@ class Kdata{
     this.bbw='2345'
     this.ddalist=[
         {
-         ysm:'maria',
-         phph:'1876356798',
-         addrrss:'WuHanXijie',
-         hhy:'Lucy',
+         ysm:'张三',
+         phph:'18827654569',
+         addrrss:'北京市海淀区',
+         hhy:'惠众公司',
          hhys:'2019-7-6',
          end:'2019-7-8'
         }

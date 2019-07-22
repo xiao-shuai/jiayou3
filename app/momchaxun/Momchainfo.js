@@ -48,7 +48,7 @@ class MONChainfo extends Component{
       .then(res=>res.json())
       .then(res=>{
           console.log('red',res)
-          Alert.alert('Warm prompt','No record',[{'text':'ok',onPress:()=>{}}])
+          Alert.alert('提示','暂无记录',[{'text':'确定',onPress:()=>{}}])
          this.setState({refreshing:false})
       })
       .catch(err=>{
@@ -106,14 +106,14 @@ class MONChainfo extends Component{
 
          <View style={yys.tab}>
                 <Text style={yys.text}>
-                name
+                姓名
                 </Text> 
 
                 <Text style={yys.text}>
-                time
+                时间
                 </Text>
                 <Text style={yys.text}>
-                  state
+                状态
                 </Text>
             </View> 
 
@@ -121,7 +121,7 @@ class MONChainfo extends Component{
          <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this.prodd}
-            title='Is refreshing'
+            title='正在刷新'
 
           />} contentContainerStyle={{alignItems:'center',flex:1}}>
             
