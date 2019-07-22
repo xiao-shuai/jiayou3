@@ -25,6 +25,9 @@ import Icon from 'react-native-vector-icons/Ionicons'
 @inject('kdata')
 @observer
 class MonHome extends Component{
+  static navigationOptions = {
+    title: '首页',
+  };
     constructor(props){
         super(props)
         this.state={
@@ -87,15 +90,15 @@ class MonHome extends Component{
       sbsbsb=()=>{
       if(this.state.xxxmm==undefined){
 
-          return this.refs.toast.show('Please enter the name',1000)
+          return this.refs.toast.show('请输入姓名',1000)
 
       }else if(this.state.pph==undefined){
 
-          return this.refs.toast.show('Please enter the phone',1000)
+          return this.refs.toast.show('请输入电话',1000)
       }else if(this.state.cpp==undefined){
-         return this.refs.toast.show('Please enter the company',1000) 
+         return this.refs.toast.show('请输入公司',1000) 
       }else if(this.state.addrrss==undefined){
-        return  this.refs.toast.show('Please enter the address',1000)
+        return  this.refs.toast.show('请输入地址',1000)
        }
 
   

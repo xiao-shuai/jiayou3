@@ -15,6 +15,9 @@ import { zthui2 } from '../momqjstyle';
 import {Button} from 'react-native-elements'
 import {NavigationActions} from 'react-navigation'
 class My extends Component{
+    static navigationOptions = {
+        title: '我的',
+      };
     constructor(props){
       super(props)
       this.state={

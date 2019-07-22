@@ -15,6 +15,9 @@ import {SearchBar} from 'react-native-elements'
 import { zthui2 } from '../momqjstyle';
 // import {Top2} from '../compont/compont' 
 class MONChainfo extends Component{
+  static navigationOptions = {
+    title: '记录',
+  };
     constructor(props){
       super(props)
       this.state={

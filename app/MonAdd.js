@@ -18,6 +18,9 @@ import MapView , { AnimatedRegion, Marker,Callout }from 'react-native-maps';
 import {Button} from 'react-native-elements'
 
 export default class DiiZhi extends  Component{
+    static navigationOptions = {
+        title: '地图',
+      };
     constructor(props){
         super(props)
         this.state={
@@ -67,8 +70,8 @@ componentDidMount(){
                     <ScrollView contentContainerStyle={{
                         alignItems:'center'
                     }}>
-
-                    <MapView 
+                <Image source={require('./img/map.png')} style={styles.dt}/>
+                    {/* <MapView 
           style={styles.dt}
           initialRegion={{
             latitude: 39.9863275788,
@@ -87,7 +90,7 @@ componentDidMount(){
              </View>
             </Callout>
           </Marker>
-          </MapView>
+          </MapView> */}
 
           {
               tytt.map((i,l)=>{
