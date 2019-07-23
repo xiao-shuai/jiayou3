@@ -44,12 +44,18 @@ class My extends Component{
        ]
        return(
            <SafeAreaView style={{flex:1,alignItems:'center'}}>
+               <Button title='个人中心' 
+               buttonStyle={{backgroundColor:zthui2.zhutisee,width:zthui2.big_width}}
+               type='clear' titleStyle={{
+            color:'white',fontSize:zthui2.big_width*.06,fontWeight:'500'
+          }}/> 
                <View style={{flex:1,width:'100%',backgroundColor:zthui2.beijinsse}}>
                    {/* <Top title='Personal center'/> */}
                    {/* <Top title='Personal center'/> */}
                    {/* <Top title='Personal center'/> */}
                    {/* <Top title='Personal center'/> */}
                    {/* <Top title='Personal center'/> */}
+                   
                  <View style={styles.t_v}>
               <Image source={require('../img/toux.png')} style={{
                   width:zthui2.big_width*.25,height:zthui2.big_width*.25,

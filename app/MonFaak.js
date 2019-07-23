@@ -25,7 +25,7 @@ export default class Faak extends  Component{
     }
     gobacc=()=>{
         if(this.state.eeff==undefined){
-            return this.refs.toast.show('Please enter content',1000)
+            return this.refs.toast.show('内容不能为空',1000)
         }
         fetch('https://easy-mock.com/mock/5d1472a93b2ae07e7cd63f3d/LOGINING',
         {method:'POST'})
