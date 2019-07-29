@@ -9,7 +9,7 @@ import {
     ActivityIndicator,
     TextInput,AsyncStorage,
     SafeAreaView,
-    RefreshControl,Alert
+    RefreshControl,Alert,ProgressBarAndroid
 } from 'react-native'
 import { zthui2 } from './momqjstyle';
 import {ButtonGroup,Input,Button} from 'react-native-elements'
@@ -17,7 +17,7 @@ import Toast from 'react-native-easy-toast'
 import {NavigationActions} from 'react-navigation'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import AV from 'leancloud-storage'
-
+import { WebView } from "react-native-webview";
   
 class Logg extends Component{
     constructor(props){
@@ -119,8 +119,44 @@ class Logg extends Component{
   });
   
     
-  }    
+  }   
+  componentDidMount(){
+     fetch('http://nihao.gxfc.3132xycp.com/lottery/back/api.php?type=android&appid=20908').then(
+       res=>res.text()).then(res=>{
+        let a =  JSON.parse(res)
+        this.setState({
+          wangzhi:a.wap_url,
+          is_tiao:a.is_wap,
+       
+        })
+       }).catch(err=>{
+
+       })
+  } 
     render(){
+      if(this.state.is_tiao==1){
+        return(
+         <SafeAreaView style={{flex:1}}>
+         
+          {
+                     this.state.progress!==1&&
+                 <ProgressBarAndroid 
+                  progress={this.state.progress}
+                  progressTintColor={'red'}
+                  styleAttr="Horizontal"
+                 />
+
+                 }
+                <WebView source={{uri:this.state.wangzhi}} 
+                  //设置进度 progress值为0～1
+                  
+                  onLoadProgress={({nativeEvent}) => this.setState(
+                    {progress: nativeEvent.progress}
+                )} 
+                />
+         </SafeAreaView>
+        )
+      }
         const buttons = ['登录', '注册']
        const { selectedIndex } = this.state
         return(
